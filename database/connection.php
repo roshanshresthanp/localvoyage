@@ -33,4 +33,5 @@ define('YOGA_TYPE',['Hatha',
 
 define('ROOM_TYPE',['Deluxe','Standard','Family Room']);
 define('FlOOR',['First','Second','Ground']);
+define('BED',['Single','Double','Triple','Quad']);
 ?>

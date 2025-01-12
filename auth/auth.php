@@ -10,7 +10,7 @@ function login($username, $password) {
         header("Location: ".url('dashboard'));
         exit();
     }
-    // echo "loinn failde";
+    
     $_SESSION["message"] = "Please enter correct email or password !!";
     header("Location: " . $_SERVER['HTTP_REFERER']);
     exit();
