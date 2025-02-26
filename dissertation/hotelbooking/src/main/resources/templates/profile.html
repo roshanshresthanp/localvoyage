@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Profile</title>
+</head>
+<body>
+    <h2>Your Profile</h2>
+    <ul>
+        <li><strong>Name:</strong> <span th:text="${user.name}"></span></li>
+        <li><strong>Username:</strong> <span th:text="${user.username}"></span></li>
+        <li><strong>Date of Birth:</strong> <span th:text="${user.dateOfBirth}"></span></li>
+        <li><strong>Gender:</strong> <span th:text="${user.gender}"></span></li>
+        <li><strong>Age Group:</strong> <span th:text="${user.ageGroup}"></span></li>
+    </ul>
+
+    <div th:if="${user.profilePicturePath}">
+        <strong>Profile Picture:</strong><br/>
+        <img th:src="@{'/uploads/' + ${user.profilePicturePath}}" width="150"/>
+    </div>
+
+    <br/>
+    <a th:href="@{/users/editProfile}">Edit Profile</a><br/>
+    <a th:href="@{/users/dashboard}">Back to Dashboard</a>
+</body>
+</html>
