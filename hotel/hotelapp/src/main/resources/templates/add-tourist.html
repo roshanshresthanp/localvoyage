@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Tourist</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<style>
+    /* Sidebar styling */
+    .sidebar {
+        height: 100%;
+        width: 250px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #343a40;
+        padding-top: 20px;
+    }
+    .sidebar a {
+        padding: 10px 15px;
+        text-decoration: none;
+        font-size: 18px;
+        color: white;
+        display: block;
+    }
+    .logo {
+        color: yellow; /* Set logo color to yellow */
+        font-size: 24px; /* Set font size for the logo */
+        font-weight: bold; /* Make the logo bold */
+        text-align: center; /* Center the logo text */
+        margin-bottom: 20px; /* Space below the logo */
+    }
+    .sidebar a:hover {
+        background-color: #575d63;
+    }
+    .main-content {
+        margin-left: 250px;
+        padding: 20px;
+    }
+</style>
+<body>
+    <div th:replace="~{fragments/hotel-sidebar}"></div>
+    <div class="main-content">
+    <div class="container">
+        <h1>Add Tourist</h1>
+        <form th:action="@{/hotel/saveTourist}" th:object="${tourist}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label>First Name</label>
+                <input type="text" th:field="*{firstName}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" th:field="*{lastName}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Profile Picture:</label>
+                <input type="file" name="profilePicture" accept="image/*"/>    
+            </div>
+            <div class="form-group">
+                <label>Date of Birth:</label>
+                <input type="date" th:field="*{dateOfBirth}"/><br/>    
+            </div>
+            <div class="form-group">
+                <label>Gender:</label>
+                <input type="radio" th:field="*{gender}" value="Male"/> Male
+                <input type="radio" th:field="*{gender}" value="Female"/> Female    
+            </div>
+        
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" th:field="*{username}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" th:field="*{password}" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a th:href="@{/hotel/dashboard}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+    </div>
+</body>
+</html>

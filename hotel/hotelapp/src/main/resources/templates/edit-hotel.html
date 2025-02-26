@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard - Edit Hotel</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            padding-top: 20px;
+        }
+        .logo {
+            color: yellow; /* Set logo color to yellow */
+            font-size: 24px; /* Set font size for the logo */
+            font-weight: bold; /* Make the logo bold */
+            text-align: center; /* Center the logo text */
+            margin-bottom: 20px; /* Space below the logo */
+        }
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+        .sidebar a:hover {
+            background-color: #575d63;
+        }
+        .sidebar a.active {
+            background-color: #495057; /* Active link color */
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div th:replace="~{fragments/admin-sidebar}"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <h1>Edit Hotel</h1>
+            <form th:action="@{/admin/hotels/update}" th:object="${hotel}" method="post">
+                <input type="hidden" th:field="*{id}">
+                <div class="form-group">
+                    <label>Hotel Name</label>
+                    <input type="text" th:field="*{hotelName}" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" th:field="*{address}" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Contact Number</label>
+                    <input type="text" th:field="*{contactNumber}" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" th:field="*{username}" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" th:field="*{password}" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+                <a th:href="@{/admin/dashboard}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</body>

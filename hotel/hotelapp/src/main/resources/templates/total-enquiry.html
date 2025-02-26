@@ -1,0 +1,110 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+        <a th:href="@{/admin/hotels/add}" class="btn btn-primary mb-3">Add Hotel</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Hotel Name</th>
+                    <th>Address</th>
+                    <th>Contact Number</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="hotel : ${hotels}">
+                    <td th:text="${hotel.id}"></td>
+                    <td th:text="${hotel.hotelName}"></td>
+                    <td th:text="${hotel.address}"></td>
+                    <td th:text="${hotel.contactNumber}"></td>
+                    <td>
+                        <a th:href="@{/admin/hotels/edit/{id}(id=${hotel.id})}" class="btn btn-warning">Edit</a>
+                        <a th:href="@{/admin/hotels/delete/{id}(id=${hotel.id})}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+    </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            padding-top: 20px;
+        }
+        .logo {
+            color: yellow; /* Set logo color to yellow */
+            font-size: 24px; /* Set font size for the logo */
+            font-weight: bold; /* Make the logo bold */
+            text-align: center; /* Center the logo text */
+            margin-bottom: 20px; /* Space below the logo */
+        }
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+        .sidebar a:hover {
+            background-color: #575d63;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div th:replace="~{fragments/admin-sidebar}"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Manage Enquiry</h1>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Subject</th>
+                    <th>Message</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="contactForm : ${contactForms}">
+                    <td th:text="${contactForm.name}"></td>
+                    <td th:text="${contactForm.email}"></td>
+                    <td th:text="${contactForm.subject}"></td>
+                    <td th:text="${contactForm.message}"></td>
+                    <td>
+                        
+                        <a th:href="@{/admin/contact-forms/delete/{id}(id=${contactForm.id})}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

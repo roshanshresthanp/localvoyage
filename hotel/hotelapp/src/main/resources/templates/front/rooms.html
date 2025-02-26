@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Arden Hotel</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div th:replace="~{fragments/header}"></div>
+    
+        <div class="banner">
+            <div class="breadcrumb">
+                <a th:href="@{/}">Home</a> &gt; 
+                <a th:href="@{rooms}">Rooms</a>
+            </div>
+            <h1>Welcome to Luxury Haven Hotel</h1>
+            <p>Your comfort is our priority</p>
+        </div>
+        
+        <section class="room-filter">
+            <h2>Search for Available Rooms</h2>
+            <form id="roomFilterForm">
+                <label for="hotelName">Hotel Name:</label>
+                <input type="text" id="hotelName" name="hotelName" placeholder="Enter hotel name">
+
+                <label for="roomType">Room Type:</label>
+                <select id="roomType" name="roomType">
+                    <option value="all">All</option>
+                    <option value="Single">Single Room</option>
+                    <option value="Executive">Executive Suite</option>
+                    <option value="Deluxe">Deluxe Suite</option>
+                </select>
+        
+                <button type="button" onclick="filterRooms()">Search</button>
+            </form>
+        </section>
+        
+        <section class="rooms" id="rooms">
+            <h2>Our Rooms</h2>
+            <div class="room-slider">
+                <div class="room-cards" id="roomCards">
+                    <div th:each="room : ${rooms}" class="room-card">
+                        
+                        <img src="images/deluxe.jpg" alt="Deluxe Room" >
+                        <div class="room-card-content">
+                            <h3 th:text="${room.hotel.hotelName}">Hotel Name</h3>
+                            <h3 th:text="${room.roomType}+ ' room'">Room Type</h3>
+                            
+                            <div class="price" th:text="'From $' + ${room.price} + ' / night'">From $299/night</div>
+                            <div class="button">
+                                <a th:href="@{/login}" class="btn">See more</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    </div>
+            </div>
+        </section>    
+        <!-- footer -->
+        <div th:replace="~{fragments/footer}"></div>
+    
+        <script>
+            // Function to send AJAX request when the user clicks "Search"
+            function filterRooms() {
+                var hotelName = $("#hotelName").val();
+                var roomType = $("#roomType").val();
+    
+                // Send AJAX request to filter rooms
+                $.ajax({
+                    url: "/rooms",
+                    type: "GET",
+                    data: {
+                        hotelName: hotelName,
+                        roomType: roomType
+                    },
+                    success: function(response) {
+                        // Empty the room cards section before inserting new results
+                        $("#roomCards").empty();
+    
+                        // Iterate over the rooms and append them to the roomCards container
+                        response.forEach(function(room) {
+                            var roomCard = `
+                                <div class="room-card">
+                                    <img src="${room.image}" alt="${room.roomType} Room">
+                                    <div class="room-card-content">
+                                        <h3>${room.hotelName}</h3>
+                                        <h3>${room.roomType} Room</h3>
+                                        <div class="price">From $${room.price} / night</div>
+                                        <div class="button">
+                                            <a href="/room/${room.id}" class="btn">See more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                            $("#roomCards").append(roomCard);
+                        });
+                    },
+                    error: function(error) {
+                        console.log("Error filtering rooms:", error);
+                    }
+                });
+            }
+        </script>
+    </body>
+</body>
+</html>

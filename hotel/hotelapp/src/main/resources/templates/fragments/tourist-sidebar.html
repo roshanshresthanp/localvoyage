@@ -1,0 +1,12 @@
+<div class="sidebar">
+    <div class="logo">Arden Hotel</div>
+    <a th:href="@{/tourist/dashboard}">Dashboard</a>
+    <a th:href="@{/tourist/profile}">View Profile</a>
+    <a th:href="@{/tourist/room}">Available Rooms</a>
+    <a th:href="@{/tourist/bookings/my-bookings/{touristId}(touristId=${touristId})}">My Bookings</a>
+    <a th:href="@{/tourist/experience}">Available Experience</a>
+    <a th:href="@{/tourist/bookingexperiences/my-experience-bookings/{touristId}(touristId=${touristId})}">My Experience Bookings</a>
+    <a th:href="@{/tourist/reviews/my-reviews/{touristId}(touristId=${touristId})}">My Reviews</a>
+    <a th:href="@{/tourist/change-password}">Change Password</a>
+    <a th:href="@{/logout}">Logout</a>
+</div>

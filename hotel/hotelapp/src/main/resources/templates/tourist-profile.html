@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            padding-top: 20px;
+        }
+        .logo {
+            color: yellow; /* Set logo color to yellow */
+            font-size: 24px; /* Set font size for the logo */
+            font-weight: bold; /* Make the logo bold */
+            text-align: center; /* Center the logo text */
+            margin-bottom: 20px; /* Space below the logo */
+        }
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+        .sidebar a:hover {
+            background-color: #575d63;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div th:replace="~{fragments/tourist-sidebar}"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>View Profile</h1>
+        <div class="card">
+            <div class="card-body">
+                <div class="text-center">
+                    <img th:src="@{'/uploads/' + ${tourist.touristPicture}}" alt="Profile Picture" class="profile-picture">
+                </div>
+                <h5 class="card-title">Username: <span th:text="${tourist.username}"></span></h5>
+                <h5 class="card-title">Name: <span th:text="${tourist.firstName}"></span> <span th:text="${tourist.lastName}"></span></h5>
+                <p class="card-text">Date of Birth: <span th:text="${tourist.dateOfBirth}"></span></p>
+                <p class="card-text">Gender: <span th:text="${tourist.gender}"></span></p>
+                <a th:href="@{/tourist/profile/edit}" class="btn btn-primary">Edit Profile</a>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

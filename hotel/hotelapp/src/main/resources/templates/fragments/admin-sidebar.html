@@ -1,0 +1,14 @@
+<div class="sidebar">
+    <div class="logo">Arden Hotel</div>
+    <a th:href="@{/admin/dashboard}" th:class="${currentPage == 'dashboard'} ? 'active' : ''">Admin Dashboard</a>
+    <a th:href="@{/admin/manage-hotel}" th:class="${currentPage == 'manage-hotel'} ? 'active' : ''">Manage Hotels</a>
+    <a th:href="@{/admin/profile}" th:class="${currentPage == 'profile'} ? 'active' : ''">View Profile</a>
+    <a th:href="@{/admin/rooms}" th:class="${currentPage == 'rooms'} ? 'active' : ''">Manage Rooms</a>
+    <a th:href="@{/admin/tourist}" th:class="${currentPage == 'tourist'} ? 'active' : ''">Manage Tourist</a>
+    <a th:href="@{/admin/hotel-bookings}" th:class="${currentPage == 'hotel-bookings'} ? 'active' : ''">Hotel Bookings</a>
+    <a th:href="@{/admin/experiences}" th:class="${currentPage == 'experiences'} ? 'active' : ''">Manage Hotel Experiences</a>
+    <a th:href="@{/admin/experience-bookings}" th:class="${currentPage == 'experience-bookings'} ? 'active' : ''">Experience Bookings</a>
+    <a th:href="@{/admin/contact-forms}" th:class="${currentPage == 'contact-forms'} ? 'active' : ''">Manage Enquiry</a>
+    <a th:href="@{/admin/change-password}" th:class="${currentPage == 'change-password'} ? 'active' : ''">Change Password</a>
+    <a th:href="@{/logout}" th:class="${currentPage == 'logout'} ? 'active' : ''">Logout</a>
+</div>

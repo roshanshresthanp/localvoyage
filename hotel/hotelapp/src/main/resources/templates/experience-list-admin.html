@@ -1,0 +1,114 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+        <a th:href="@{/admin/hotels/add}" class="btn btn-primary mb-3">Add Hotel</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Hotel Name</th>
+                    <th>Address</th>
+                    <th>Contact Number</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="hotel : ${hotels}">
+                    <td th:text="${hotel.id}"></td>
+                    <td th:text="${hotel.hotelName}"></td>
+                    <td th:text="${hotel.address}"></td>
+                    <td th:text="${hotel.contactNumber}"></td>
+                    <td>
+                        <a th:href="@{/admin/hotels/edit/{id}(id=${hotel.id})}" class="btn btn-warning">Edit</a>
+                        <a th:href="@{/admin/hotels/delete/{id}(id=${hotel.id})}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+    </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+        .logo {
+            color: yellow; /* Set logo color to yellow */
+            font-size: 24px; /* Set font size for the logo */
+            font-weight: bold; /* Make the logo bold */
+            text-align: center; /* Center the logo text */
+            margin-bottom: 20px; /* Space below the logo */
+        }
+        .sidebar a:hover {
+            background-color: #575d63;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div th:replace="~{fragments/admin-sidebar}"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Experience List</h1>
+        <a th:href="@{/admin/experiences/add}" class="btn btn-primary mb-3">Add New Experience</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Hotel Name</th>
+                    <th>Experience Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Duration</th>
+                    <th>Is Local</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="experience : ${experiences}">
+                    <td th:text="${experience.hotel.hotelName}"></td>
+                    <td th:text="${experience.experienceName}"></td>
+                    <td th:text="${experience.description}"></td>
+                    <td th:text="${experience.price}"></td>
+                    <td th:text="${experience.duration}"></td>
+                    <td th:text="${experience.isLocal ? 'Yes' : 'No'}"></td>
+                    <td>
+                        <a th:href="@{/admin/experiences/edit/{id}(id=${experience.id})}" class="btn btn-warning">Edit</a>
+                        <a th:href="@{/admin/experiences/delete/{id}(id=${experience.id})}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

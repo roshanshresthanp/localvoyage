@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Room</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            padding-top: 20px;
+        }
+        .logo {
+            color: yellow; /* Set logo color to yellow */
+            font-size: 24px; /* Set font size for the logo */
+            font-weight: bold; /* Make the logo bold */
+            text-align: center; /* Center the logo text */
+            margin-bottom: 20px; /* Space below the logo */
+        }
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+        .sidebar a:hover {
+            background-color: #575d63;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div th:replace="~{fragments/hotel-sidebar}"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Edit Room</h1>
+        <form th:action="@{/hotel/rooms/update}" th:object="${room}" method="post" enctype="multipart/form-data">
+            <input type="hidden" th:field="*{id}">
+            <div class="form-group">
+                <label>Room Type</label>
+                <input type="text" th:field="*{roomType}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Price</label>
+                <input type="number" th:field="*{price}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Availability</label>
+                <select th:field="*{available}" class="form-control" required>
+                    <option th:value="true" th:text="'Available'"></option>
+                    <option th:value="false" th:text="'Not Available'"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Current Picture:</label>
+                <div th:if="${room.roomPicture}">
+                    <img th:src="@{'/uploads/' + ${room.roomPicture}}" width="100"/><br/>
+                </div>
+                <div th:unless="${room.roomPicture}">
+                    <p>No profile picture uploaded.</p>
+                </div>
+                
+                <label>Upload New Profile Picture:</label>
+                <input type="file" name="profilePicture" accept="image/*"/><br/>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Room</button>
+            <a th:href="@{/hotel/rooms}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

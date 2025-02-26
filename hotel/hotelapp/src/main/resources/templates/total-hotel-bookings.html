@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+        .logo {
+            color: yellow; /* Set logo color to yellow */
+            font-size: 24px; /* Set font size for the logo */
+            font-weight: bold; /* Make the logo bold */
+            text-align: center; /* Center the logo text */
+            margin-bottom: 20px; /* Space below the logo */
+        }
+        .sidebar a:hover {
+            background-color: #575d63;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div th:replace="~{fragments/admin-sidebar}"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Hotel Bookings</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>Tourist Name</th>
+                    <th>Room Type</th>
+                    <th>Check-In Date</th>
+                    <th>Check-Out Date</th>
+                    <th>Status</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="booking : ${bookings}">
+                    <td th:text="${booking.id}"></td>
+                    <td th:text="${booking.tourist.firstName + ' ' + booking.tourist.lastName}"></td>
+                    <td th:text="${booking.room.roomType}"></td>
+                    <td th:text="${booking.checkInDate}"></td>
+                    <td th:text="${booking.checkOutDate}"></td>
+                    <td th:text="${booking.status}"></td>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

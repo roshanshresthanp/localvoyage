@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tourist Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            padding-top: 20px;
+        }
+        .logo {
+            color: yellow; /* Set logo color to yellow */
+            font-size: 24px; /* Set font size for the logo */
+            font-weight: bold; /* Make the logo bold */
+            text-align: center; /* Center the logo text */
+            margin-bottom: 20px; /* Space below the logo */
+        }
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+        .sidebar a:hover {
+            background-color: #575d63;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div th:replace="~{fragments/tourist-sidebar}"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Add Review</h1>
+        <form th:action="@{/tourist/reviews/add-review}" method="post">
+            <input type="hidden" name="touristId" th:value="${touristId}">
+            <input type="hidden" name="experienceId" th:value="${experienceId}">
+            <div class="form-group">
+                <label>Rating</label>
+                <input type="number" name="rating" class="form-control" min="1" max="5" required>
+            </div>
+            <div class="form-group">
+                <label>Feedback</label>
+                <textarea name="feedback" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Review</button>
+            <a th:href="@{/tourist/reviews}" class="btn btn-secondary">Cancel</a>
+        </form>
+        
+    </div>
+</body>
+</html>

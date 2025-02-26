@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tourist Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+        .sidebar a:hover {
+            background-color: #575d63;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a th:href="@{/tourist/dashboard}">Dashboard</a>
+        <a th:href="@{/tourist/profile}">View Profile</a>
+        <a th:href="@{/tourist/room}">Available Rooms</a>
+        <a th:href="@{/tourist/bookings/my-bookings/{touristId}(touristId=${touristId})}">My Bookings</a>
+        <a th:href="@{/tourist/experience}">Available Experience</a>
+        <a th:href="@{/tourist/bookingexperiences/my-experience-bookings/{touristId}(touristId=${touristId})}">My Experience Bookings</a>
+        <a th:href="@{/tourist/bookings/my-bookings/{touristId}(touristId=${touristId})}">My Reviews</a>
+        <a th:href="@{/tourist/change-password}">Change Password</a>
+        <a th:href="@{/logout}">Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Edit Review</h1>
+        <form th:action="@{/tourist/reviews/update-review/{reviewId}(reviewId=${review.reviewId})}" th:object="${review}" method="post">
+            <input type="hidden" th:field="*{reviewId}">
+            <input type="hidden" th:field="*{tourist.id}" >
+            <input type="hidden" th:field="*{experience.id}">
+            <div class="form-group">
+                <label>Rating</label>
+                <input type="number" th:field="*{rating}" class="form-control" min="1" max="5" required>
+            </div>
+            <div class="form-group">
+                <label>Feedback</label>
+                <textarea th:field="*{feedback}" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Review</button>
+            <a th:href="@{/tourist/reviews}" class="btn btn-secondary">Cancel</a>
+        </form>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+/* Contact Page */
+.contact {
+    padding: 100px 10%;
+    background: #f7f7f7;
+    text-align: center;
+}
+
+.contact h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    font-weight: bold;
+
+}
+
+.container {
+    display: flex;
+    justify-content:space-around;
+    
+}
+.card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 350px; /* Adjusted width for better fit */
+    text-align: center;
+    justify-content: space-around;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+.content h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.content p {
+    margin: 5px 0;
+    color: #333;
+}
+
+.content a {
+    color: #333;
+    text-decoration: none;
+}
+
+.content a:hover {
+    text-decoration: underline;
+}
+
+.form-container {
+    margin-top: 40px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #ffd700;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: black;
+}

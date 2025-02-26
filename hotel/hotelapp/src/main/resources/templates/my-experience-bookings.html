@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Experience Bookings</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+        .logo {
+            color: yellow; /* Set logo color to yellow */
+            font-size: 24px; /* Set font size for the logo */
+            font-weight: bold; /* Make the logo bold */
+            text-align: center; /* Center the logo text */
+            margin-bottom: 20px; /* Space below the logo */
+        }
+        .sidebar a:hover {
+            background-color: #575d63;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        </style>
+</head>
+<body>
+    
+    <div th:replace="~{fragments/tourist-sidebar}"></div>
+    <div class="main-content">
+        <div class="container">
+            <h1>My Experience Bookings</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>Description</th>
+                        <th>Booking Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="bookingExperience : ${bookingExperiences}">
+                        <td th:text="${bookingExperience.id}"></td>
+                        <td th:text="${bookingExperience.experience.experienceName}"></td>
+                        <td th:text="${bookingExperience.experienceDate}"></td>
+                        <td th:text="${bookingExperience.status}"></td>
+                        <td>
+                            
+                                <a th:href="@{/tourist/reviews/reviewExperience/{experienceId}(experienceId=${bookingExperience.experience.id})}" class="btn btn-success" th:if="${bookingExperience.status == 'CONFIRMED'}">Review</a>
+                            
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+    
+</body>
+</html>

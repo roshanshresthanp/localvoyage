@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+        .sidebar a:hover {
+            background-color: #575d63;
+        }
+        .logo {
+            color: yellow; /* Set logo color to yellow */
+            font-size: 24px; /* Set font size for the logo */
+            font-weight: bold; /* Make the logo bold */
+            text-align: center; /* Center the logo text */
+            margin-bottom: 20px; /* Space below the logo */
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div th:replace="~{fragments/admin-sidebar}"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Admin Profile</h1>
+        <div class="card">
+            <div class="card-body">
+                <div class="text-center">
+                    <img th:src="@{'/uploads/' + ${admin.profilePicture}}" alt="Profile Picture" class="profile-picture">
+                </div>
+                <h5 class="card-title">Username: <span th:text="${admin.username}"></span></h5>
+                <p class="card-text">First Name: <span th:text="${admin.firstName}"></span></p>
+                <p class="card-text">Last Name: <span th:text="${admin.lastName}"></span></p>
+                <a th:href="@{/admin/profile/edit}" class="btn btn-primary">Edit Profile</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

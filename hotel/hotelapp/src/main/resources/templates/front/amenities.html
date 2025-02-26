@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Arden Hotel</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="amenities.css">
+    </head>
+    <body>
+        <div th:replace="~{fragments/header}"></div>
+    
+        <!-- Banner Section -->
+        <div class="banner">
+            <div class="breadcrumb">
+                <a th:href="@{/}">Home</a> &gt; 
+                <a href="@{/amenities}">Amenities</a>
+            </div>
+            <h1>Welcome to Luxury Haven Hotel</h1>
+            <p>Your comfort is our priority</p>
+        </div>
+
+        <!-- Amenities Section -->
+        <section class="amenities">
+            <h2>Our Exclusive Amenities</h2>
+            <div class="amenities-grid">
+                <div class="amenity-card">
+                    <img src="images/spaandwellness.jpg" alt="Spa and Wellness">
+                    <div class="amenity-card-content">
+                        <h3>Spa & Wellness</h3>
+                        <p>Indulge in world-class spa treatments and rejuvenate your body and mind with our exclusive wellness services.</p>
+                    </div>
+                </div>
+
+                <div class="amenity-card">
+                    <img src="images/infinitypool.jpg" alt="Infinity Pool">
+                    <div class="amenity-card-content">
+                        <h3>Infinity Pool</h3>
+                        <p>Relax by our pristine infinity pool with breathtaking views of the ocean. A perfect escape for relaxation and leisure.</p>
+                    </div>
+                </div>
+
+                <div class="amenity-card">
+                    <img src="images/finedining.jpg" alt="Fine Dining">
+                    <div class="amenity-card-content">
+                        <h3>Fine Dining</h3>
+                        <p>Our top-tier restaurants offer gourmet meals prepared by world-renowned chefs. Experience culinary excellence at its finest.</p>
+                    </div>
+                </div>
+
+                <div class="amenity-card">
+                    <img src="images/fitness.jpg" alt="Fitness Center">
+                    <div class="amenity-card-content">
+                        <h3>Fitness Center</h3>
+                        <p>Stay fit and healthy in our fully equipped fitness center with modern workout machines and personalized training services.</p>
+                    </div>
+                </div>
+
+                <div class="amenity-card">
+                    <img src="images/business.jpg" alt="Business Center">
+                    <div class="amenity-card-content">
+                        <h3>Business Center</h3>
+                        <p>Our business center provides a quiet and efficient space for all your work needs, equipped with high-speed internet and conference rooms.</p>
+                    </div>
+                </div>
+
+                <div class="amenity-card">
+                    <img src="images/kid.jpg" alt="Kids Club">
+                    <div class="amenity-card-content">
+                        <h3>Kids Club</h3>
+                        <p>Our family-friendly hotel offers a safe and fun environment for children with interactive games, crafts, and learning activities.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- footer -->
+        <div th:replace="~{fragments/footer}"></div>
+    
+        <script src="script.js"></script>
+    </body>
+</body>
+</html>

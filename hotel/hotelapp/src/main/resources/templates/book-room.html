@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book Room</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        function calculateTotalPrice() {
+            const checkInDate = new Date(document.getElementById("checkInDate").value);
+            const checkOutDate = new Date(document.getElementById("checkOutDate").value);
+            const roomPrice = parseFloat(document.getElementById("roomPrice").value);
+
+            if (checkInDate && checkOutDate && checkOutDate > checkInDate) {
+                const timeDifference = checkOutDate - checkInDate;
+                const numberOfNights = timeDifference / (1000 * 3600 * 24); // Convert milliseconds to days
+                const totalPrice = numberOfNights * roomPrice;
+                document.getElementById("totalPrice").innerText = totalPrice.toFixed(2); // Display total price
+            } else {
+                document.getElementById("totalPrice").innerText = "0.00"; // Reset if dates are invalid
+            }
+        }
+    </script>
+</head>
+
+<style>
+    .sidebar {
+        height: 100%;
+        width: 250px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #343a40;
+        padding-top: 20px;
+    }
+    .logo {
+            color: yellow; /* Set logo color to yellow */
+            font-size: 24px; /* Set font size for the logo */
+            font-weight: bold; /* Make the logo bold */
+            text-align: center; /* Center the logo text */
+            margin-bottom: 20px; /* Space below the logo */
+        }
+    .sidebar a {
+        padding: 10px 15px;
+        text-decoration: none;
+        font-size: 18px;
+        color: white;
+        display: block;
+    }
+    .sidebar a:hover {
+        background-color: #575d63;
+    }
+    .main-content {
+        margin-left: 250px;
+        padding: 20px;
+    }
+</style>
+<body>
+
+    <!-- Sidebar -->
+    <div th:replace="~{fragments/tourist-sidebar}"></div>
+
+    <div class="main-content">
+        <div class="container">
+            <h1>Book Room</h1>
+            <form th:action="@{/tourist/bookings/book-room}" method="post">
+                <input type="hidden" name="touristId" th:value="${touristId}">
+                <input type="hidden" name="roomId" th:value="${room.id}">
+                <input type="hidden" id="roomPrice" th:value="${room.price}"> <!-- Room price hidden field -->
+                
+                <div class="form-group">
+                    <label>Check-In Date</label>
+                    <input type="date" id="checkInDate" name="checkInDate" class="form-control" required onchange="calculateTotalPrice()">
+                </div>
+                <div class="form-group">
+                    <label>Check-Out Date</label>
+                    <input type="date" id="checkOutDate" name="checkOutDate" class="form-control" required onchange="calculateTotalPrice()">
+                </div>
+                <div class="form-group">
+                    <label>Total Price</label>
+                    <h5 id="totalPrice">0.00</h5> <!-- Display total price here -->
+                </div>
+                <button type="submit" class="btn btn-primary">Book Room</button>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

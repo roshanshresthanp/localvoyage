@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            padding-top: 20px;
+        }
+        .logo {
+            color: yellow; /* Set logo color to yellow */
+            font-size: 24px; /* Set font size for the logo */
+            font-weight: bold; /* Make the logo bold */
+            text-align: center; /* Center the logo text */
+            margin-bottom: 20px; /* Space below the logo */
+        }
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+        .sidebar a:hover {
+            background-color: #575d63;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div th:replace="~{fragments/admin-sidebar}"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Add New Experience</h1>
+        <form th:action="@{/admin/experiences/save}" th:object="${experience}" method="post" enctype="multipart/form-data">
+            <label>Hotel</label>
+            <select th:field="*{hotel.id}" class="form-control" required>
+                <option value="" disabled selected>Select a hotel</option>
+                <tr th:each="hotel : ${hotels}">
+                    <option th:value="${hotel.id}" th:text="${hotel.hotelName}"></option>
+                </tr>
+            </select>
+            
+            <div class="form-group">
+                <label>Experience Name</label>
+                <input type="text" th:field="*{experienceName}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea th:field="*{description}" class="form-control" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>Price</label>
+                <input type="number" th:field="*{price}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Duration</label>
+                <input type="text" th:field="*{duration}" class="form-control" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Add Experience</button>
+            <a th:href="@{/admin/experiences}" class="btn btn-secondary">Cancel</a>
+        </form>
+    <a href="/hotel/experiences">Back to Experience List</a>
+    </div>
+</body>
+</html>
