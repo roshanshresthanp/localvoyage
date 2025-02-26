@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Management</title>
+</head>
+<body>
+    <h2>User List</h2>
+    <a th:href="@{/admin/showNewUserForm}">Add New User</a>
+    <a th:href="@{/admin/dashboard}">Back</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Profile Picture</th>
+                <th>Date of Birth</th>
+                <th>Gender</th>
+                <th>Age Group</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${listUsers}">
+                <td th:text="${user.name}"></td>
+                <td>
+                    <img th:if="${user.profilePicturePath}" th:src="@{'/uploads/' + ${user.profilePicturePath}}" width="100"/>
+                </td>
+                <td th:text="${user.dateOfBirth}"></td>
+                <td th:text="${user.gender}"></td>
+                <td th:text="${user.ageGroup}"></td>
+                <td>
+                    <a th:href="@{/admin/showFormForUpdate/{id}(id=${user.id})}">Update</a>
+                    <a th:href="@{/admin/deleteUser/{id}(id=${user.id})}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Dashboard</title>
+</head>
+<body>
+    <h2>Welcome, User!</h2>
+    <p>This is the user dashboard.</p>
+    <a th:href="@{/users/profile}">View Profile</a><br/>
+    <a th:href="@{/users/editProfile}">Edit Profile</a><br/>
+    <a th:href="@{/logout}">Logout</a>
+</body>
+</html>
