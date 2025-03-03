@@ -19,7 +19,6 @@ public class Hotel extends User {
     public Hotel() {
         this.setRole("HOTEL");
     }
-
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Room> rooms; // One hotel can have many rooms
 

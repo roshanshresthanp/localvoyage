@@ -16,18 +16,14 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 public class Tourist extends User {
-
     private String firstName;
     private String lastName;
     private String touristPicture;
-    
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate dateOfBirth; 
-
+    private LocalDate dateOfBirth;
     private String gender;
      @Column(unique = true, nullable = false) // username is unique
     private String username;
-
     @Column(nullable = false) // Ensure password is not null
     private String password;
 

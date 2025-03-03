@@ -34,26 +34,20 @@ public class TouristService {
             Tourist existingTourist = touristRepository.findById(tourist.getId()).orElse(null);
             if (existingTourist != null) {
                 System.out.println("Updating existing tourist with ID: " + tourist.getId());
-    
                 // Update fields of the existing tourist
                 existingTourist.setFirstName(tourist.getFirstName());
                 existingTourist.setLastName(tourist.getLastName());
                 existingTourist.setId(tourist.getId());
-                
-    
                 // Handle file upload
                 if (file != null && !file.isEmpty()) {
-                    
                     // Save the new file
                     String fileName = fileStorageService.storeFile(file);
                     existingTourist.setTouristPicture(fileName);
                 }
-    
                 // Handle password update
                 if (tourist.getPassword() != null && !tourist.getPassword().isEmpty()) {
                     existingTourist.setPassword(tourist.getPassword());
                 }
-    
                 // Save the updated tourist
                 return touristRepository.save(existingTourist);
             } else {
@@ -62,25 +56,20 @@ public class TouristService {
         } else {
             System.out.println("Creating new tourist.");
         }
-    
         // Handle new tourist creation
         if (file != null && !file.isEmpty()) {
             String fileName = fileStorageService.storeFile(file);
             tourist.setTouristPicture(fileName);
         }
-    
-        // Hash the password for new tourists (if needed)
         if (tourist.getPassword() != null && !tourist.getPassword().isEmpty()) {
             tourist.setPassword(tourist.getPassword());
         }
-    
         // Save the new tourist
         return touristRepository.save(tourist);
     }
 
     public Tourist updateTourist(Long id, Tourist tourist, MultipartFile file) throws IOException {
         Tourist existingTourist = touristRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Tourist not found"));
-        
         // Update attributes
         existingTourist.setFirstName(tourist.getFirstName());
         existingTourist.setLastName(tourist.getLastName());

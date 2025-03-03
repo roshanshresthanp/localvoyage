@@ -28,12 +28,10 @@ public class ReviewService {
     public List<Review> getAllReviews() {
         return reviewRepository.findAll();
     }
-
     // Method to get reviews by hotel ID
     public List<Review> getReviewsByHotelId(Long hotelId) {
         return reviewRepository.findByHotel_HotelId(hotelId);
     }
-
     //get reviews By Tourist Id
     public List<Review> getReviewsByTouristId(Long touristId) {
         return reviewRepository.findByTourist_TouristId(touristId);
@@ -42,12 +40,8 @@ public class ReviewService {
     public Review getReviewsById(Long id) {
         return reviewRepository.findById(id).orElse(null);
     }
-
-
     // Method to save a new review
     public Review saveReview(Review review,Long touristId, Long experienceId) {
-        
-
         Tourist tourist = touristService.getTouristById(touristId);
         Experience experience = experienceService.getExperienceById(experienceId);
 
@@ -60,7 +54,6 @@ public class ReviewService {
         bookingExperience.setExperience(experience);
         review.setCreatedAt(LocalDateTime.now()); // Set the creation timestamp
         return reviewRepository.save(review);
-
     }
 
     // Method to update an existing review
