@@ -87,6 +87,10 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		
+		<layers>
+        	<enabled>true</enabled>
+    	</layers>
 	</build>
 
 
