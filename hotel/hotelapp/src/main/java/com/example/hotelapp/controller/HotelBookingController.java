@@ -19,17 +19,7 @@ public class HotelBookingController {
     private BookingService bookingService;
 
     @Autowired
-    private HotelService hotelService;
-
-    // @GetMapping("/{hotelId}")
-    // public String viewBookingsForHotel(@PathVariable Long hotelId, Model model) {
-    //     List<Booking> bookings = bookingService.getBookingsByHotelId(hotelId);
-    //     model.addAttribute("bookings", bookings);
-    //     model.addAttribute("hotelId", hotelId);
-    //     return "hotel-bookings";
-    // }
-
-    
+    private HotelService hotelService;    
 
     @PostMapping("/update-status/{bookingId}")
     public String updateBookingStatus(

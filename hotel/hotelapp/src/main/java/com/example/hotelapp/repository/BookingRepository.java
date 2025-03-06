@@ -11,7 +11,6 @@ import com.example.hotelapp.entity.Booking;
 public interface BookingRepository extends JpaRepository<Booking, Long> {
     List<Booking> findByTouristId(Long touristId);
     List<Booking> findByRoomId(Long roomId);
-    // List<Booking> findByHotelId(Long hotelId);
     @Query("SELECT b.room.hotel.id FROM Booking b WHERE b.room.id = :roomId")
     Long findHotelIdByRoomId(@Param("roomId") Long roomId);
 

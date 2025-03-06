@@ -24,20 +24,14 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String roomType; // e.g., Single, Double, Suite
-    // private String roomPicture; // File path or URL of the room picture (optional)
     private double price;
-
     @ManyToOne
     @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel; // Many rooms belong to one hotel
-
     @Column(nullable = false)
     private boolean available; // Availability of the room
-
     private String roomPicture;
-
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Booking> bookings;
 

@@ -18,10 +18,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.hotelapp.entity.Booking;
 import com.example.hotelapp.entity.BookingExperience;
 import com.example.hotelapp.entity.Hotel;
+import com.example.hotelapp.entity.Review;
 import com.example.hotelapp.entity.Tourist;
 import com.example.hotelapp.service.BookingExperienceService;
 import com.example.hotelapp.service.BookingService;
 import com.example.hotelapp.service.HotelService;
+import com.example.hotelapp.service.ReviewService;
 import com.example.hotelapp.service.TouristService;
 
 import jakarta.servlet.http.HttpSession;
@@ -236,5 +238,22 @@ public class HotelController {
         this.touristService.deleteTourist(id);
         return "redirect:/hotel/tourists";
     }
+
+    @Autowired
+    private ReviewService reviewService;
+
+    @GetMapping("/reviews/hotel-reviews")
+        public String viewMyBookings(Model model,HttpSession session) {
+
+            if (session.getAttribute("role") == null || !"HOTEL".equals(session.getAttribute("role"))) {
+                return "redirect:/login"; // Redirect to login if not a tourist
+            }
+            Hotel loggedInHotel = (Hotel) session.getAttribute("user");
+
+            List<Review> reviews = reviewService.getReviewsByHotelId(loggedInHotel.getId());
+
+            model.addAttribute("reviews", reviews);
+            return "review-list-hotel";
+        }
     
 }

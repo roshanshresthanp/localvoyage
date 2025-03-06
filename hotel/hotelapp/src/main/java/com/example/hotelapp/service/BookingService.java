@@ -30,15 +30,11 @@ public class BookingService {
     public Booking bookRoom(Long touristId, Long roomId, LocalDate checkInDate, LocalDate checkOutDate) {
         Tourist tourist = touristService.getTouristById(touristId);
         Room room = roomService.getRoomById(roomId);
-
         if (tourist == null || room == null) {
             throw new IllegalArgumentException("Tourist or Room not found");
         }
-
          // Calculate the number of nights
         long numberOfNights = ChronoUnit.DAYS.between(checkInDate, checkOutDate);
-        
-
         // Calculate total price as double
         double roomPrice = room.getPrice(); // Assuming room.getPrice() returns a double
         double totalPrice = roomPrice * numberOfNights;
@@ -69,11 +65,6 @@ public class BookingService {
         booking.setStatus(status);
         return bookingRepository.save(booking);
     }
-
-    // Method to get bookings by hotel ID
-    // public List<Booking> getBookingsByHotelId(Long hotelId) {
-    //     return bookingRepository.findByHotelId(hotelId);
-    // }
 
     public Long getHotelIdByRoomId(Long roomId) {
         return bookingRepository.findHotelIdByRoomId(roomId);
