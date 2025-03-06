@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `last_name` varchar(255) DEFAULT NULL,
   `profile_picture` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `admin`
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `booking` (
   PRIMARY KEY (`id`),
   KEY `FKq83pan5xy2a6rn0qsl9bckqai` (`room_id`),
   KEY `FKru6tbcvksnyc5iex7n9wdlo48` (`tourist_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `booking`
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `booking_experience` (
   PRIMARY KEY (`id`),
   KEY `FK4suq3c4x4r8cexqyrlarsbcrv` (`experience_id`),
   KEY `FKcqc74prew8o1v21cdmadjovto` (`tourist_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `booking_experience`
@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `contact_form` (
   `name` varchar(255) DEFAULT NULL,
   `subject` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `contact_form`
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `experience` (
   `hotel_id` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FKk0lt4gjartpq212ttqa5qlg1n` (`hotel_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `experience`
@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `hotel` (
   `contact_number` varchar(255) DEFAULT NULL,
   `hotel_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `hotel`
@@ -192,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `reviews` (
   KEY `FK4s56155v4j9k3iseo6qd1p51y` (`hotel_id`),
   KEY `FKmbprkr7cubj2vkdmlu5jcgyv` (`tourist_id`),
   KEY `FKi9c6ma5c7mjc3yt4p4cne94fh` (`experience_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `reviews`
@@ -217,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `room` (
   `room_picture` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKdosq3ww4h9m2osim6o0lugng8` (`hotel_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `room`
@@ -246,7 +246,7 @@ CREATE TABLE IF NOT EXISTS `tourist` (
   `last_name` varchar(255) DEFAULT NULL,
   `tourist_picture` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tourist`
