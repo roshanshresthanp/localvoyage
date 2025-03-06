@@ -88,9 +88,6 @@
 			</plugin>
 		</plugins>
 		
-		<layers>
-        	<enabled>true</enabled>
-    	</layers>
 	</build>
 
 
