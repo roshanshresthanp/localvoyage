@@ -7,3 +7,14 @@ target/
 build/
 *.log
 *.md
+/tests
+/docs
+/logs
+*.tmp
+*.bak
+/target/classes
+/target/generated-sources
+/target/maven-archiver
+/target/maven-status
+/target/site
+/target/test-classes
