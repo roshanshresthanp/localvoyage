@@ -2,3 +2,8 @@
 *.pdf
 /test
 /spec
+node_modules/
+target/
+build/
+*.log
+*.md
