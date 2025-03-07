@@ -1,1 +1,1 @@
-web: java -jar target/local-voyage.jar
+web: java -jar target/hotelapp-0.0.1-SNAPSHOT.jar
