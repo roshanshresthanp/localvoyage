@@ -44,7 +44,8 @@
     <!-- Main Content -->
     <div class="main-content">
         <h1>Experience List</h1>
-        <a th:href="@{/hotel/experiences/add}" class="btn btn-primary mb-3">Add New Experience</a>
+        <p th:if="${success}" class="text-success" th:text="${success}"></p>
+        <a th:href="@{/hotel/experiences/add}" class="btn btn-success mb-3">Add New Experience</a>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -65,11 +66,53 @@
                     <td th:text="${experience.isLocal ? 'Yes' : 'No'}"></td>
                     <td>
                         <a th:href="@{/hotel/experiences/edit/{id}(id=${experience.id})}" class="btn btn-warning">Edit</a>
-                        <a th:href="@{/hotel/experiences/delete/{id}(id=${experience.id})}" class="btn btn-danger">Delete</a>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" th:attr="data-id=${experience.id}">Delete</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this experience?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <a id="confirmDeleteButton" href="#" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Script to handle modal and delete confirmation -->
+    <script>
+        $(document).ready(function () {
+            // When the delete button is clicked, set the ID for the delete link
+            $('#deleteModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                var experienceId = button.data('id'); // Extract info from data-* attributes
+                var deleteLink = $('#confirmDeleteButton'); // Get the delete link in the modal
+
+                // Set the href attribute of the delete link
+                deleteLink.attr('href', '/hotel/experiences/delete/' + experienceId);
+            });
+        });
+    </script>
 </body>
 </html>

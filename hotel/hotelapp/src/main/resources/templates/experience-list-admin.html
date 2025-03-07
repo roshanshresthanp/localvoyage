@@ -1,41 +1,3 @@
-<!-- <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Admin Dashboard</h1>
-        <a th:href="@{/admin/hotels/add}" class="btn btn-primary mb-3">Add Hotel</a>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Hotel Name</th>
-                    <th>Address</th>
-                    <th>Contact Number</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="hotel : ${hotels}">
-                    <td th:text="${hotel.id}"></td>
-                    <td th:text="${hotel.hotelName}"></td>
-                    <td th:text="${hotel.address}"></td>
-                    <td th:text="${hotel.contactNumber}"></td>
-                    <td>
-                        <a th:href="@{/admin/hotels/edit/{id}(id=${hotel.id})}" class="btn btn-warning">Edit</a>
-                        <a th:href="@{/admin/hotels/delete/{id}(id=${hotel.id})}" class="btn btn-danger">Delete</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
-    </div>
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -81,7 +43,7 @@
     <!-- Main Content -->
     <div class="main-content">
         <h1>Experience List</h1>
-        <a th:href="@{/admin/experiences/add}" class="btn btn-primary mb-3">Add New Experience</a>
+        <a th:href="@{/admin/experiences/add}" class="btn btn-success mb-3">Add New Experience</a>
         <table class="table table-striped">
             <thead>
                 <tr>

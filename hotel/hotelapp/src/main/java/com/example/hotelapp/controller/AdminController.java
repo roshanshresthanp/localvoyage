@@ -20,6 +20,7 @@ import com.example.hotelapp.entity.BookingExperience;
 import com.example.hotelapp.entity.ContactForm;
 import com.example.hotelapp.entity.Experience;
 import com.example.hotelapp.entity.Hotel;
+import com.example.hotelapp.entity.Review;
 import com.example.hotelapp.entity.Room;
 import com.example.hotelapp.entity.Tourist;
 import com.example.hotelapp.service.AdminService;
@@ -29,6 +30,7 @@ import com.example.hotelapp.service.ContactFormService;
 import com.example.hotelapp.service.ExperienceService;
 import com.example.hotelapp.service.FileStorageService;
 import com.example.hotelapp.service.HotelService;
+import com.example.hotelapp.service.ReviewService;
 import com.example.hotelapp.service.RoomService;
 import com.example.hotelapp.service.TouristService;
 
@@ -297,6 +299,7 @@ public class AdminController {
                 
                 List<Room> rooms = roomService.getAllRooms();
                 model.addAttribute("rooms", rooms);
+                
                 return "room-list-admin";
             }
 
@@ -309,6 +312,7 @@ public class AdminController {
                 List<Hotel> hotels = hotelService.getAllHotels(); // Fetch the list of hotels
                 model.addAttribute("hotels", hotels);
                 model.addAttribute("room", new Room());
+                
                 return "add-room-admin";
             }
 
@@ -333,7 +337,6 @@ public class AdminController {
                 roomService.saveRoom(room,file);
                 model.addAttribute("success", "Room added successfully!");
 
-            
                 return "redirect:/admin/rooms";
             }
 
@@ -512,4 +515,19 @@ public class AdminController {
                 contactFormService.deleteContactForm(id);
                 return "redirect:/admin/contact-forms"; // Redirect to the experience list
              }
+
+             @Autowired
+             private ReviewService reviewService;
+             @GetMapping("/reviews")
+            public String listAdminReviews(HttpSession session, Model model) {
+                if (session.getAttribute("role") == null || !"ADMIN".equals(session.getAttribute("role"))) {
+                    return "redirect:/login";
+                }
+
+                
+                List<Review> reviews = reviewService.getAllReviews();
+                model.addAttribute("reviews", reviews);
+                model.addAttribute("success", "Room deleted successfully!");
+                return "review-list-admin";
+            }
     }

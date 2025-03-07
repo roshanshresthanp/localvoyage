@@ -91,5 +91,13 @@ public class BookingService {
         
     }
 
+    public long getTotalBookingForHotel(Long hotelId) {
+        return bookingRepository.countByHotelId(hotelId);
+    }
+
+    public long getTotalBookingForTourist(Long touristId) {
+        return bookingRepository.countBookingByTouristId(touristId);
+    }
+
 
 }

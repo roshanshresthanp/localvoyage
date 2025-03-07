@@ -127,4 +127,6 @@ public class TouristService {
         return touristRepository.count();
        
     }
+
+    
 }
