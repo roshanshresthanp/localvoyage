@@ -1,41 +1,3 @@
-<!-- <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Admin Dashboard</h1>
-        <a th:href="@{/admin/hotels/add}" class="btn btn-primary mb-3">Add Hotel</a>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Hotel Name</th>
-                    <th>Address</th>
-                    <th>Contact Number</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="hotel : ${hotels}">
-                    <td th:text="${hotel.id}"></td>
-                    <td th:text="${hotel.hotelName}"></td>
-                    <td th:text="${hotel.address}"></td>
-                    <td th:text="${hotel.contactNumber}"></td>
-                    <td>
-                        <a th:href="@{/admin/hotels/edit/{id}(id=${hotel.id})}" class="btn btn-warning">Edit</a>
-                        <a th:href="@{/admin/hotels/delete/{id}(id=${hotel.id})}" class="btn btn-danger">Delete</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
-    </div>
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -99,12 +61,53 @@
                     <td th:text="${contactForm.subject}"></td>
                     <td th:text="${contactForm.message}"></td>
                     <td>
-                        
-                        <a th:href="@{/admin/contact-forms/delete/{id}(id=${contactForm.id})}" class="btn btn-danger">Delete</a>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" th:attr="data-id=${contactForm.id}">Delete</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this inquiry?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <a id="confirmDeleteButton" href="#" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Script to handle modal and delete confirmation -->
+    <script>
+        $(document).ready(function () {
+            // When the delete button is clicked, set the ID for the delete link
+            $('#deleteModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                var contactFormId = button.data('id'); // Extract info from data-* attributes
+                var deleteLink = $('#confirmDeleteButton'); // Get the delete link in the modal
+
+                // Set the href attribute of the delete link
+                deleteLink.attr('href', '/admin/contact-forms/delete/' + contactFormId);
+            });
+        });
+    </script>
 </body>
 </html>

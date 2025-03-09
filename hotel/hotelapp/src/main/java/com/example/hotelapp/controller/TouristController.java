@@ -22,6 +22,8 @@ import com.example.hotelapp.entity.Hotel;
 import com.example.hotelapp.entity.Review;
 import com.example.hotelapp.entity.Room;
 import com.example.hotelapp.entity.Tourist;
+import com.example.hotelapp.service.BookingExperienceService;
+import com.example.hotelapp.service.BookingService;
 import com.example.hotelapp.service.ExperienceService;
 import com.example.hotelapp.service.FileStorageService;
 import com.example.hotelapp.service.HotelService;
@@ -38,6 +40,11 @@ public class TouristController {
     @Autowired
     private TouristService touristService;
 
+    @Autowired
+    private BookingService bookingService;
+
+    @Autowired
+    private BookingExperienceService bookingExperienceService;
     @Autowired
     private FileStorageService fileStorageService;
 
@@ -61,6 +68,14 @@ public class TouristController {
             return "redirect:/login";
         }
         Tourist tourist = (Tourist) session.getAttribute("user");
+        long totalHotelBookings = bookingService.getTotalBookingForTourist(tourist.getId());
+        long totalExperienceBookings = bookingExperienceService.getHotelExperienceBookingsByTourist(tourist.getId());
+        long totalReview = reviewService.getTotalReviewByTourist(tourist.getId());
+
+        // Add counts to the model
+        model.addAttribute("totalHotelBookings", totalHotelBookings);
+        model.addAttribute("totalExperienceBookings", totalExperienceBookings);
+        model.addAttribute("totalReview", totalReview);
         model.addAttribute("touristId", tourist.getId()); 
         return "tourist-dashboard";
     }

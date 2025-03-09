@@ -17,4 +17,10 @@ public interface BookingExperienceRepository extends JpaRepository <BookingExper
 
     @Query("SELECT b FROM BookingExperience b WHERE b.experience.hotel.id = :hotelId")
     List<BookingExperience> findBookingExperienceByHotelId(@Param("hotelId") Long hotelId);
+
+    @Query("SELECT COUNT(b) FROM BookingExperience b WHERE b.experience.hotel.id = :hotelId")
+    long countExperienceByHotelId(@Param("hotelId") Long hotelId);
+
+    @Query("SELECT COUNT(b) FROM BookingExperience b WHERE b.tourist.id = :touristId")
+    long countExperienceByTouristId(@Param("touristId") Long touristId);
 }

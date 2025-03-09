@@ -18,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.hotelapp.entity.Booking;
 import com.example.hotelapp.entity.BookingExperience;
 import com.example.hotelapp.entity.Hotel;
-import com.example.hotelapp.entity.Review;
 import com.example.hotelapp.entity.Tourist;
 import com.example.hotelapp.service.BookingExperienceService;
 import com.example.hotelapp.service.BookingService;
@@ -51,7 +50,15 @@ public class HotelController {
         if (session.getAttribute("role") == null || !"HOTEL".equals(session.getAttribute("role"))) {
             return "redirect:/login";
         }
+        
+
         Hotel hotel = (Hotel) session.getAttribute("user");
+        long totalHotelBookings = bookingService.getTotalBookingForHotel(hotel.getId());
+        long totalExperienceBookings = bookingExperienceService.getHotelExperienceBookings(hotel.getId());
+        
+
+        model.addAttribute("totalHotelBookings", totalHotelBookings);
+        model.addAttribute("totalExperienceBookings", totalExperienceBookings);
         model.addAttribute("hotel", hotel);
         return "hotel-dashboard";
     }
@@ -243,17 +250,15 @@ public class HotelController {
     private ReviewService reviewService;
 
     @GetMapping("/reviews/hotel-reviews")
-        public String viewMyBookings(Model model,HttpSession session) {
+        public String viewMyReviewsBookings(Model model,HttpSession session) {
 
             if (session.getAttribute("role") == null || !"HOTEL".equals(session.getAttribute("role"))) {
                 return "redirect:/login"; // Redirect to login if not a tourist
             }
-            Hotel loggedInHotel = (Hotel) session.getAttribute("user");
-
-            List<Review> reviews = reviewService.getReviewsByHotelId(loggedInHotel.getId());
-
-            model.addAttribute("reviews", reviews);
+            Hotel hotel = (Hotel) session.getAttribute("user");
+            model.addAttribute("reviews", reviewService.getAllReviewsByHotelId(hotel.getId()));
             return "review-list-hotel";
+
         }
     
 }

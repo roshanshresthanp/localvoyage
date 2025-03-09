@@ -71,4 +71,12 @@ public class BookingExperienceService {
     public long getTotalExperienceBookings() {
         return bookingExperienceRepository.count();
     }
+
+    public long getHotelExperienceBookings(Long hotelId){
+        return bookingExperienceRepository.countExperienceByHotelId(hotelId);
+    }
+
+    public long getHotelExperienceBookingsByTourist(Long touristId){
+        return bookingExperienceRepository.countExperienceByTouristId(touristId);
+    }
 }

@@ -38,7 +38,7 @@
 </head>
 <body>
     <!-- Sidebar -->
-    <div th:replace="~{fragments/admin-sidebar}"></div>
+    <div th:replace="~{fragments/hotel-sidebar}"></div>
 
     <!-- Main Content -->
     <div class="main-content">
@@ -59,7 +59,7 @@
                     <td th:text="${review.createdAt}"></td>
                     <td th:text="${review.rating}"></td>
                     <td th:text="${review.feedback}"></td>
-                    <td th:text="${review.tourist.firstName} {review.tourist.lastName}"></td>
+                    <td th:text="${review.tourist.firstName}"></td>
                     
                 </tr>
             </tbody>

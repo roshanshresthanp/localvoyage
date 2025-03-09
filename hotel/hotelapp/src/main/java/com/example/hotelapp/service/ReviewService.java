@@ -28,6 +28,9 @@ public class ReviewService {
     public List<Review> getAllReviews() {
         return reviewRepository.findAll();
     }
+    public List<Review> getAllReviewsByHotelId(Long hotelId) {
+        return reviewRepository.findByHotel_HotelId(hotelId);
+    }
     // Method to get reviews by hotel ID
     public List<Review> getReviewsByHotelId(Long hotelId) {
         return reviewRepository.findByHotel_HotelId(hotelId);
@@ -66,5 +69,9 @@ public class ReviewService {
     // Method to delete a review
     public void deleteReview(Long id) {
         reviewRepository.deleteById(id);
+    }
+
+    public long getTotalReviewByTourist(Long touristId) {
+        return reviewRepository.countReviewByTouristId(touristId);
     }
 }

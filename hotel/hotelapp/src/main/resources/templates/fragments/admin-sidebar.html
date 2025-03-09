@@ -1,8 +1,9 @@
 <div class="sidebar">
-    <div class="logo">Arden Hotel</div>
+    <div class="logo">Local Voyage</div>
     <a th:href="@{/admin/dashboard}" th:class="${currentPage == 'dashboard'} ? 'active' : ''">Admin Dashboard</a>
     <a th:href="@{/admin/manage-hotel}" th:class="${currentPage == 'manage-hotel'} ? 'active' : ''">Manage Hotels</a>
     <a th:href="@{/admin/profile}" th:class="${currentPage == 'profile'} ? 'active' : ''">View Profile</a>
+    <a th:href="@{/admin/reviews}" th:class="${currentPage == 'review-list-admin'} ? 'active' : ''">View Reviews</a>
     <a th:href="@{/admin/rooms}" th:class="${currentPage == 'rooms'} ? 'active' : ''">Manage Rooms</a>
     <a th:href="@{/admin/tourist}" th:class="${currentPage == 'tourist'} ? 'active' : ''">Manage Tourist</a>
     <a th:href="@{/admin/hotel-bookings}" th:class="${currentPage == 'hotel-bookings'} ? 'active' : ''">Hotel Bookings</a>
